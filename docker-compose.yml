@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    volumes:
+      - db_data_nestjs:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=cris
+      - POSTGRES_PASSWORD=test123
+      - POSTGRES_DB=gim
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    ports:
+      - '8888:80'
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=test@test.com
+      - PGADMIN_DEFAULT_PASSWORD=test123
+    volumes:
+      - pgadmin_data_nestjs:/var/lib/pgadmin
+
+volumes:
+  db_data_nestjs:
+  pgadmin_data_nestjs:
